@@ -26,5 +26,6 @@ typedef struct{
 #define INIT(sm,name)       {sm.ptr = (function_pointer)name;sm.first_time=1;}
 #define EXEC(sm)            {function_pointer temp=sm.ptr;sm.ptr(&sm);sm.first_time=(temp != sm.ptr);}
 #define FIRST               (_sm_->first_time)
+#define COMPARE(sm,name)	(sm.ptr == (function_pointer)name)
 
 #endif // SM_H
