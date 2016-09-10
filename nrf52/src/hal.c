@@ -16,6 +16,7 @@
 #include "app_gpiote.h"
 #include "nrf_drv_gpiote.h"
 #include "nrf_gpio.h"
+#include "app_pwm.h"
 #include "SEGGER_RTT.h"
 
 #define MAIN_ROTOR_ADC_CHANNEL              1
@@ -25,17 +26,22 @@
 #define ADC_RES_10BIT                       1024
 #define ADC_BUTTON                          16
 
+APP_PWM_INSTANCE(PWM1,1);                   // Create the instance "PWM1" using TIMER1.
+
 #define ADC_RESULT_IN_MILLI_VOLTS(ADC_VALUE)\
         ((((ADC_VALUE) * ADC_REF_VOLTAGE_IN_MILLIVOLTS) / ADC_RES_10BIT) * ADC_PRE_SCALING_COMPENSATION)
 
 static SemaphoreHandle_t              m_ble_event_ready;
 static TaskHandle_t				      m_ble_stack_task;
 static TimerHandle_t                  debounce_timer;
+static TimerHandle_t                  pwm_duty_timer;
 static bool                           sampling = 0;
+static volatile bool ready_flag;            // A flag indicating PWM status.
 
 const uint8_t sin_table[] = {0, 0,1,2,4,6,9,12,16,20,24,29,35,40,   46, 53, 59, 66, 74, 81, 88, 96, 104,112,120,128,136,144,152,160,168,175,182,190,197,203,210,216,221,227,
                232,236,240,244,247,250,252,254,255,255,255,255,255,254,252,250,247,244,240,236,232,227,221,216,210,203,197,190,182,175,168,160,152,144,136,128,120,112,104,
                96,88,81,74,66,59,   53, 46, 40, 35, 29,24,  20, 16, 12, 9,  6,  4,  2,1,0};
+static uint32_t                        sine_count;               
 
 void ble_stack_task(void * vParm)
 {   
@@ -70,9 +76,30 @@ void ble_stack_task(void * vParm)
     }
 }
 
+static void pwm_ready_callback(uint32_t pwm_id)    // PWM callback function
+{
+    ready_flag = true;
+}
+
 static void pwm_init() {
+    app_pwm_config_t pwm1_cfg = APP_PWM_DEFAULT_CONFIG_1CH(100, PWM0_CONFIG_OUT3_PIN);
+    
+    /* Switch the polarity of the second channel. */
+    pwm1_cfg.pin_polarity[0] = APP_PWM_POLARITY_ACTIVE_HIGH;
+    
+    /* Initialize and enable PWM. */
+    uint32_t err_code = app_pwm_init(&PWM1,&pwm1_cfg,pwm_ready_callback);
+    APP_ERROR_CHECK(err_code);
     
 }
+
+static void update_duty() {
+    sine_count = (sine_count+1) % 100;
+    uint8_t duty = sin_table[sine_count]*100/255;
+    app_pwm_channel_duty_set(&PWM1, 0, duty);
+}
+
+
 static void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
 {
     // Unused but needed for SAADC config
@@ -128,6 +155,15 @@ static void debounce() {
 
 void adc_button_toggle(){
     sampling = !sampling;
+
+    if(sampling) {
+        sine_count = 0;
+        app_pwm_enable(&PWM1);
+        xTimerStart(pwm_duty_timer, 2);
+    } else {
+        app_pwm_disable(&PWM1);
+        xTimerStop(pwm_duty_timer, 2);
+    }
 }
 
 void adc_sample() {
@@ -171,8 +207,10 @@ void init_hal() {
     // The best solution is to start the OS before any other initalisation.
 
     debounce_timer = xTimerCreate("DEBOUNCE_TIMER", 500, pdTRUE, NULL, debounce);
+    pwm_duty_timer = xTimerCreate("PWM_TIMER", 200, pdTRUE, NULL, update_duty);
     adc_configure();
     gpiote_init();
+    pwm_init();
     
     // Init a semaphore for the BLE thread.
     m_ble_event_ready = xSemaphoreCreateBinary();
