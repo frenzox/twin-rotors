@@ -17,7 +17,7 @@
  * In general it is a bad idea to to so much printf stuff and UART transfer inside the BLE handler,
  * but this is just for demonstrate purposes.
  *
- * @param[in]   p_our_service        Our Service structure.
+ * @param[in]   p_rs        Our Service structure.
  * @param[in]   p_ble_evt            BLE event passed from BLE stack
  *
  */
@@ -126,9 +126,9 @@ static uint32_t main_rotor_char_add(ble_rs_t * p_rs)
     attr_char_value.p_attr_md   = &attr_md;
     
     // OUR_JOB: Step 2.H, Set characteristic length in number of bytes
-    attr_char_value.max_len     = 4;
-    attr_char_value.init_len    = 4;
-    uint8_t initial_value[4]    = {0x00, 0x00, 0x00, 0x00};
+    attr_char_value.max_len     = 2;
+    attr_char_value.init_len    = 2;
+    uint8_t initial_value[2]    = {0x00, 0x00};
     attr_char_value.p_value     = initial_value;
 
     // OUR_JOB: Step 2.E, Add our new characteristic to the service
@@ -192,9 +192,9 @@ static uint32_t tail_rotor_char_add(ble_rs_t * p_rs)
     attr_char_value.p_attr_md   = &attr_md;
     
     // OUR_JOB: Step 2.H, Set characteristic length in number of bytes
-    attr_char_value.max_len     = 4;
-    attr_char_value.init_len    = 4;
-    uint8_t initial_value[4]    = {0x00, 0x00, 0x00, 0x00};
+    attr_char_value.max_len     = 2;
+    attr_char_value.init_len    = 2;
+    uint8_t initial_value[2]    = {0x00, 0x00};
     attr_char_value.p_value     = initial_value;
 
     // OUR_JOB: Step 2.E, Add our new characteristic to the service
@@ -366,12 +366,12 @@ void ble_rs_init(ble_rs_t * p_rs, ble_rs_evt_handler_t evt_handler)
 }
 
 // Function to be called when updating characteristic value
-void main_rotor_characteristic_update(ble_rs_t *p_rs, uint32_t *value)
+void main_rotor_characteristic_update(ble_rs_t *p_rs, uint16_t *value)
 {
     // Update characteristic value
     if (p_rs->conn_handle != BLE_CONN_HANDLE_INVALID)
     {
-        uint16_t               len = 4;
+        uint16_t len      = 2;
         ble_gatts_hvx_params_t hvx_params;
         memset(&hvx_params, 0, sizeof(hvx_params));
 
@@ -386,12 +386,12 @@ void main_rotor_characteristic_update(ble_rs_t *p_rs, uint32_t *value)
 }
 
 // Function to be called when updating characteristic value
-void tail_rotor_characteristic_update(ble_rs_t *p_rs, uint32_t *value)
+void tail_rotor_characteristic_update(ble_rs_t *p_rs, uint16_t *value)
 {
     // Update characteristic value
     if (p_rs->conn_handle != BLE_CONN_HANDLE_INVALID)
     {
-        uint16_t               len = 4;
+        uint16_t      len = 2;
         ble_gatts_hvx_params_t hvx_params;
         memset(&hvx_params, 0, sizeof(hvx_params));
 

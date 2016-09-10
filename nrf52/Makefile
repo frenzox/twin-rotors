@@ -47,6 +47,8 @@ $(abspath sdk/components/libraries/fstorage/fstorage.c) \
 $(abspath sdk/components/libraries/util/nrf_assert.c) \
 $(abspath sdk/components/libraries/util/nrf_log.c) \
 $(abspath sdk/components/libraries/sensorsim/sensorsim.c) \
+$(abspath sdk/components/libraries/gpiote/app_gpiote.c) \
+$(abspath sdk/components/libraries/pwm/app_pwm.c) \
 $(abspath sdk/external/segger_rtt/RTT_Syscalls_GCC.c) \
 $(abspath sdk/external/segger_rtt/SEGGER_RTT.c) \
 $(abspath sdk/external/segger_rtt/SEGGER_RTT_printf.c) \
@@ -66,6 +68,11 @@ $(abspath sdk/components/drivers_nrf/common/nrf_drv_common.c) \
 $(abspath sdk/components/drivers_nrf/pstorage/pstorage.c) \
 $(abspath sdk/components/drivers_nrf/clock/nrf_drv_clock.c) \
 $(abspath sdk/components/drivers_nrf/gpiote/nrf_drv_gpiote.c) \
+$(abspath sdk/components/drivers_nrf/saadc/nrf_drv_saadc.c) \
+$(abspath sdk/components/drivers_nrf/ppi/nrf_drv_ppi.c) \
+$(abspath sdk/components/drivers_nrf/timer/nrf_drv_timer.c) \
+$(abspath sdk/components/drivers_nrf/pwm/nrf_drv_pwm.c) \
+$(abspath sdk/components/drivers_nrf/hal/nrf_saadc.c) \
 $(abspath sdk/examples/bsp/bsp.c) \
 $(abspath sdk/examplesbsp/bsp_btn_ble.c) \
 $(abspath ../common/main.c) \
@@ -97,6 +104,9 @@ INC_PATHS += -I$(abspath sdk/components/drivers_nrf/hal)
 INC_PATHS += -I$(abspath sdk/components/drivers_nrf/common)
 INC_PATHS += -I$(abspath sdk/components/drivers_nrf/clock)
 INC_PATHS += -I$(abspath sdk/components/drivers_nrf/gpiote)
+INC_PATHS += -I$(abspath sdk/components/drivers_nrf/saadc)
+INC_PATHS += -I$(abspath sdk/components/drivers_nrf/ppi)
+INC_PATHS += -I$(abspath sdk/components/drivers_nrf/timer)
 INC_PATHS += -I$(abspath sdk/components/libraries/timer)
 INC_PATHS += -I$(abspath sdk/components/libraries/fstorage/config)
 INC_PATHS += -I$(abspath sdk/components/libraries/sensorsim)
@@ -106,6 +116,8 @@ INC_PATHS += -I$(abspath sdk/components/libraries/button)
 INC_PATHS += -I$(abspath sdk/components/libraries/fstorage)
 INC_PATHS += -I$(abspath sdk/components/libraries/experimental_section_vars)
 INC_PATHS += -I$(abspath sdk/components/libraries/trace)
+INC_PATHS += -I$(abspath sdk/components/libraries/gpiote)
+INC_PATHS += -I$(abspath sdk/components/libraries/pwm)
 INC_PATHS += -I$(abspath sdk/components/softdevice/s132/headers/nrf52)
 INC_PATHS += -I$(abspath sdk/components/softdevice/s132/headers)
 INC_PATHS += -I$(abspath sdk/components/softdevice/common/softdevice_handler)
@@ -115,8 +127,9 @@ INC_PATHS += -I$(abspath sdk/components/ble/common)
 INC_PATHS += -I$(abspath sdk/components/device)
 INC_PATHS += -I$(abspath sdk/external/freertos/portable/GCC/nrf52)
 INC_PATHS += -I$(abspath sdk/components/drivers_nrf/delay)
+INC_PATHS += -I$(abspath sdk/components/drivers_nrf/pwm)
 INC_PATHS += -I$(abspath sdk/external/freertos/source/include)
-INC_PATHS += -I$(abspath sdk/external/freertos/config)
+# INC_PATHS += -I$(abspath sdk/external/freertos/config)
 INC_PATHS += -I$(abspath sdk/external/freertos/portable/CMSIS/nrf52)
 INC_PATHS += -I$(abspath sdk/external/segger_rtt)
 INC_PATHS += -I$(abspath sdk/examples/bsp)
@@ -146,6 +159,7 @@ CFLAGS += -DNRF52_PAN_30
 CFLAGS += -DNRF52_PAN_51
 CFLAGS += -DNRF52_PAN_36
 CFLAGS += -DNRF52_PAN_53
+CFLAGS += -DNRF_LOG_USES_RTT=1
 CFLAGS += -DNRF_LOG_USES_UART=0
 CFLAGS += -DS132
 CFLAGS += -DFREERTOS

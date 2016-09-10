@@ -32,6 +32,9 @@
 #include "timers.h"
 #include "semphr.h"
 
+// Declare a service structure for the application
+ble_rs_t m_rs;
+
 void timers_init(void);
 void buttons_leds_init(bool * erase_bonds);
 void ble_stack_init(void);

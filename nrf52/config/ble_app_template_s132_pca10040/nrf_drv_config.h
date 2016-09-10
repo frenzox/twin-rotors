@@ -45,7 +45,7 @@
 #endif
 
 /* TIMER */
-#define TIMER0_ENABLED 0
+#define TIMER0_ENABLED 1
 
 #if (TIMER0_ENABLED == 1)
 #define TIMER0_CONFIG_FREQUENCY    NRF_TIMER_FREQ_16MHz
@@ -56,7 +56,7 @@
 #define TIMER0_INSTANCE_INDEX      0
 #endif
 
-#define TIMER1_ENABLED 0
+#define TIMER1_ENABLED 1
 
 #if (TIMER1_ENABLED == 1)
 #define TIMER1_CONFIG_FREQUENCY    NRF_TIMER_FREQ_16MHz
@@ -150,7 +150,7 @@
 
 /* PWM */
 
-#define PWM0_ENABLED 0
+#define PWM0_ENABLED 1
 
 #if (PWM0_ENABLED == 1)
 #define PWM0_CONFIG_OUT0_PIN        2
@@ -167,7 +167,7 @@
 #define PWM0_INSTANCE_INDEX 0
 #endif
 
-#define PWM1_ENABLED 0
+#define PWM1_ENABLED 1
 
 #if (PWM1_ENABLED == 1)
 #define PWM1_CONFIG_OUT0_PIN        2
@@ -385,7 +385,7 @@
 
 
 /* SAADC */
-#define SAADC_ENABLED 0
+#define SAADC_ENABLED 1
 
 #if (SAADC_ENABLED == 1)
 #define SAADC_CONFIG_RESOLUTION      NRF_SAADC_RESOLUTION_10BIT

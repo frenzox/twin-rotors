@@ -33,12 +33,12 @@
 
 /* @brief Data structure for [Main Rotor] characteristic */
 typedef struct {
-    uint32_t value;        // Which GPIO is being controlled, for now, only GPIO0 is valid option
+    uint16_t value;        // Which GPIO is being controlled, for now, only GPIO0 is valid option
 } main_rotor_char_value_t;
 
 /* @brief Data structure for [Tail Rotor] characteristic */
 typedef struct {
-	uint32_t value;
+	uint16_t value;
 } tail_rotor_char_value_t;
 
 /* @brief Data structure for [Main Rotor Control] characteristic */
@@ -98,25 +98,25 @@ typedef struct ble_rs_s
  *
  * @details Handles all events from the BLE stack of interest to Our Service.
  *
- * @param[in]   p_our_service       Our Service structure.
+ * @param[in]   p_rs       Our Service structure.
  * @param[in]   p_ble_evt  Event received from the BLE stack.
  */
-void ble_rs_on_ble_evt(ble_rs_t * p_our_service, ble_evt_t * p_ble_evt);
+void ble_rs_on_ble_evt(ble_rs_t * p_rs, ble_evt_t * p_ble_evt);
 
 /**@brief Function for initializing our new service.
  *
- * @param[in]   p_our_service       Pointer to Our Service structure.
+ * @param[in]   p_rs       Pointer to Our Service structure.
  */
-void ble_rs_init(ble_rs_t * p_our_service, ble_rs_evt_handler_t evt_handler);
+void ble_rs_init(ble_rs_t * p_rs, ble_rs_evt_handler_t evt_handler);
 
 /**@brief Function for updating and sending new characteristic values
  *
  * @details The application calls this function whenever our timer_timeout_handler triggers
  *
- * @param[in]   p_our_service                     Our Service structure.
+ * @param[in]   p_rs                     Our Service structure.
  * @param[in]   characteristic_value     New characteristic value.
  */
-void main_rotor_characteristic_update(ble_rs_t *p_our_service, uint32_t *value);
-void tail_rotor_characteristic_update(ble_rs_t *p_our_service, uint32_t *value);
+void main_rotor_characteristic_update(ble_rs_t *p_rs, uint16_t *value);
+void tail_rotor_characteristic_update(ble_rs_t *p_rs, uint16_t *value);
 
 #endif  /* BLE_RS_H */

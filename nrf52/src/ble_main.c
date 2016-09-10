@@ -19,7 +19,7 @@
 #define DEVICE_NAME                      "TwinRotors"                               /**< Name of device. Will be included in the advertising data. */
 #define MANUFACTURER_NAME                "NordicSemiconductor"                      /**< Manufacturer. Will be passed to Device Information Service. */
 #define APP_ADV_INTERVAL                 300                                        /**< The advertising interval (in units of 0.625 ms. This value corresponds to 25 ms). */
-#define APP_ADV_TIMEOUT_IN_SECONDS       180                                        /**< The advertising timeout in units of seconds. */
+#define APP_ADV_TIMEOUT_IN_SECONDS       0                                          /**< The advertising timeout in units of seconds. */
 
 #define APP_TIMER_PRESCALER              0                                          /**< Value of the RTC1 PRESCALER register. */
 #define APP_TIMER_OP_QUEUE_SIZE          4                                          /**< Size of timer operation queues. */
@@ -45,9 +45,6 @@
 static dm_application_instance_t         m_app_handle;                              /**< Application identifier allocated by device manager */
 
 static uint16_t                          m_conn_handle = BLE_CONN_HANDLE_INVALID;   /**< Handle of the current connection. */
-
-// Declare a service structure for the application
-static ble_rs_t                          m_rs;
 
 /**@brief Callback function for asserts in the SoftDevice.
  *
@@ -111,11 +108,11 @@ static void on_ble_data_receive(ble_rs_t* p_rs, ble_rs_evt_t* p_evt)
     switch(p_evt->evt_type) {
         case BLE_RS_EVT_MAIN_ROTOR_CONTROL:
             nrf_gpio_pin_toggle(18);
-            main_rotor_characteristic_update(p_rs, &p_evt->main_rotor_control.value);
+            //main_rotor_characteristic_update(p_rs, &p_evt->main_rotor_control.value);
             break;
         case BLE_RS_EVT_TAIL_ROTOR_CONTROL:
             nrf_gpio_pin_toggle(19);
-            tail_rotor_characteristic_update(p_rs, &p_evt->tail_rotor_control.value);
+            //tail_rotor_characteristic_update(p_rs, &p_evt->tail_rotor_control.value);
         break;
         default:break;
     }
@@ -249,6 +246,9 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
 
         case BLE_GAP_EVT_DISCONNECTED:
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
+            
+            err_code = ble_advertising_start(BLE_ADV_MODE_FAST);
+            APP_ERROR_CHECK(err_code);
         
             // When disconnected; stop our timer to stop temperature measurements
             // app_timer_stop(m_our_char_timer_id);
@@ -452,7 +452,7 @@ void buttons_leds_init(bool * p_erase_bonds)
 {
     bsp_event_t startup_event;
 
-    uint32_t err_code = bsp_init(BSP_INIT_LED | BSP_INIT_BUTTONS,
+    uint32_t err_code = bsp_init(BSP_INIT_LED,
                                  APP_TIMER_TICKS(100, APP_TIMER_PRESCALER), 
                                  bsp_event_handler);
     APP_ERROR_CHECK(err_code);
