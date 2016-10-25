@@ -19,36 +19,36 @@
 #include "app_pwm.h"
 #include "SEGGER_RTT.h"
 
+
 #define MAIN_ROTOR_ADC_CHANNEL              1
 #define TAIL_ROTOR_ADC_CHANNEL              2
 #define ADC_PRE_SCALING_COMPENSATION        6
 #define ADC_REF_VOLTAGE_IN_MILLIVOLTS       600
 #define ADC_RES_10BIT                       1024
 #define ADC_BUTTON                          16
-
-APP_PWM_INSTANCE(PWM1,1);                   // Create the instance "PWM1" using TIMER1.
-
 #define ADC_RESULT_IN_MILLI_VOLTS(ADC_VALUE)\
         ((((ADC_VALUE) * ADC_REF_VOLTAGE_IN_MILLIVOLTS) / ADC_RES_10BIT) * ADC_PRE_SCALING_COMPENSATION)
+
+APP_PWM_INSTANCE(PWM1,1);                   // Create the instance "PWM1" using TIMER1.
 
 static SemaphoreHandle_t              m_ble_event_ready;
 static TaskHandle_t				      m_ble_stack_task;
 static TimerHandle_t                  debounce_timer;
 static TimerHandle_t                  pwm_duty_timer;
-static bool                           sampling = 0;
-static volatile bool ready_flag;            // A flag indicating PWM status.
+static uint32_t                        sine_count;
+static bool                           sampling;
+static volatile bool                  ready_flag;            // A flag indicating PWM status.
 
 const uint8_t sin_table[] = {0, 0,1,2,4,6,9,12,16,20,24,29,35,40,   46, 53, 59, 66, 74, 81, 88, 96, 104,112,120,128,136,144,152,160,168,175,182,190,197,203,210,216,221,227,
                232,236,240,244,247,250,252,254,255,255,255,255,255,254,252,250,247,244,240,236,232,227,221,216,210,203,197,190,182,175,168,160,152,144,136,128,120,112,104,
-               96,88,81,74,66,59,   53, 46, 40, 35, 29,24,  20, 16, 12, 9,  6,  4,  2,1,0};
-static uint32_t                        sine_count;               
+               96,88,81,74,66,59,   53, 46, 40, 35, 29,24,  20, 16, 12, 9,  6,  4,  2,1,0};            
 
 void ble_stack_task(void * vParm)
 {   
     uint32_t err_code;
     bool erase_bonds;
 
-    // Initialize.
+    // Initialize.js
     timers_init();
     buttons_leds_init(&erase_bonds);
     ble_stack_init();
@@ -88,14 +88,14 @@ static void pwm_init() {
     pwm1_cfg.pin_polarity[0] = APP_PWM_POLARITY_ACTIVE_HIGH;
     
     /* Initialize and enable PWM. */
-    uint32_t err_code = app_pwm_init(&PWM1,&pwm1_cfg,pwm_ready_callback);
+    uint32_t err_code = app_pwm_init(&PWM1, &pwm1_cfg, pwm_ready_callback);
     APP_ERROR_CHECK(err_code);
     
 }
 
 static void update_duty() {
     sine_count = (sine_count+1) % 100;
-    uint8_t duty = sin_table[sine_count]*100/255;
+    uint8_t duty = (sin_table[sine_count]*50/255) + 50;
     app_pwm_channel_duty_set(&PWM1, 0, duty);
 }
 
@@ -141,6 +141,7 @@ static void gpiote_init(){
 
     nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_HITOLO(true);
     in_config.pull = NRF_GPIO_PIN_PULLUP;
+    //in_config.hi_accuracy = true;
 
     err_code = nrf_drv_gpiote_in_init(ADC_BUTTON, &in_config, adc_button_handler);
     APP_ERROR_CHECK(err_code);
@@ -152,6 +153,7 @@ static void debounce() {
     xTimerStop(debounce_timer, 2);
     nrf_drv_gpiote_in_event_enable(ADC_BUTTON, true);
 }
+
 
 void adc_button_toggle(){
     sampling = !sampling;
@@ -203,11 +205,12 @@ void set_sampling_indicator(bool on) {
 }
 
 void init_hal() {
-	// Do not start any interrupt that uses system functions before system initialisation.
-    // The best solution is to start the OS before any other initalisation.
 
-    debounce_timer = xTimerCreate("DEBOUNCE_TIMER", 500, pdTRUE, NULL, debounce);
-    pwm_duty_timer = xTimerCreate("PWM_TIMER", 200, pdTRUE, NULL, update_duty);
+    sampling = false;
+    ready_flag = false;
+    debounce_timer = xTimerCreate("DEBOUNCE_TIMER", 300, pdTRUE, NULL, debounce);
+    pwm_duty_timer = xTimerCreate("PWM_TIMER", 30, pdTRUE, NULL, update_duty);
+
     adc_configure();
     gpiote_init();
     pwm_init();

@@ -76,6 +76,7 @@ $(abspath sdk/components/drivers_nrf/hal/nrf_saadc.c) \
 $(abspath sdk/examples/bsp/bsp.c) \
 $(abspath sdk/examplesbsp/bsp_btn_ble.c) \
 $(abspath ../common/main.c) \
+$(abspath ../common/adc_sm.c) \
 $(abspath src/ble_main.c) \
 $(abspath src/hal.c) \
 $(abspath src/ble_rs.c) \

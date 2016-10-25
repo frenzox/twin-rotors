@@ -9,58 +9,23 @@
 //      Felipe Hartcopp Betoni
 //
 
-#include "hal.h"
-#include "sm.h"
+#include "adc_sm.h"
 
-#define ADC_SAMPLING_PERIOD	20
-
-static TimerHandle_t	adc_sampling_timer;
-static state_machine 	sampling_sm;
-
-STATE(IDLE);
-STATE(SAMPLING);
-
-STATE(IDLE) {
-	if(FIRST)
-		set_sampling_indicator(false);
-	if(is_sampling())
-		NEXT_STATE(SAMPLING);
-}
-
-STATE(SAMPLING) {
-	if(FIRST)
-		set_sampling_indicator(true);
-	if(!is_sampling())
-		NEXT_STATE(IDLE);
-}
-
-void adc_sampling(TimerHandle_t xTimer) {
-	if(COMPARE(sampling_sm, SAMPLING))
-		adc_sample();
-}
-
-void start_timers() {
-    if(pdPASS != xTimerStart(adc_sampling_timer, 2))
-    {
-        APP_ERROR_HANDLER(NRF_ERROR_NO_MEM);
-    }
-}
-
-void vApplicationIdleHook() {
-	EXEC(sampling_sm);
+void state_machine_task(void *pParam){
+        while(1){
+	        EXEC(sampling_sm);
+                vTaskDelay(20);
+	}
 }
 
 int main(void) {
-	adc_sampling_timer = xTimerCreate("ADC_TIMER", ADC_SAMPLING_PERIOD, pdTRUE, NULL, adc_sampling);
 
 	init_hal();
 	INIT(sampling_sm, IDLE);
-	start_timers();
+	xTaskCreate(state_machine_task, "SM_TASK", 50, NULL, 1, NULL);
 	vTaskStartScheduler();
 
-	while(1){
-		//Infinite loop
-	};
+	while(1){};
 
 	return 0;
 }
