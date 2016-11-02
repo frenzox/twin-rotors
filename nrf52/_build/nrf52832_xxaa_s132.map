@@ -5690,7 +5690,7 @@ RAM              0x0000000020001fe8 0x000000000000e018 xrw
 Linker script and memory map
 
 
-.text           0x000000000001c000     0xadbc
+.text           0x000000000001c000     0xadd0
  *(.isr_vector)
  .isr_vector    0x000000000001c000      0x400 _build/gcc_startup_nrf52.o
                 0x000000000001c000                __isr_vector
@@ -6241,247 +6241,247 @@ Linker script and memory map
                 0x0000000000023944       0x5c _build/hal.o
                 0x0000000000023944                ble_stack_task
  .text.update_duty
-                0x00000000000239a0       0x58 _build/hal.o
+                0x00000000000239a0       0x68 _build/hal.o
  .text.debounce
-                0x00000000000239f8       0x28 _build/hal.o
+                0x0000000000023a08       0x28 _build/hal.o
  .text.adc_button_handler
-                0x0000000000023a20       0x94 _build/hal.o
+                0x0000000000023a30       0x94 _build/hal.o
  .text.adc_sample
-                0x0000000000023ab4       0x80 _build/hal.o
-                0x0000000000023ab4                adc_sample
+                0x0000000000023ac4       0x80 _build/hal.o
+                0x0000000000023ac4                adc_sample
  .text.is_sampling
-                0x0000000000023b34        0xc _build/hal.o
-                0x0000000000023b34                is_sampling
+                0x0000000000023b44        0xc _build/hal.o
+                0x0000000000023b44                is_sampling
  .text.set_sampling_indicator
-                0x0000000000023b40       0x18 _build/hal.o
-                0x0000000000023b40                set_sampling_indicator
+                0x0000000000023b50       0x18 _build/hal.o
+                0x0000000000023b50                set_sampling_indicator
  .text.init_hal
-                0x0000000000023b58      0x16c _build/hal.o
-                0x0000000000023b58                init_hal
+                0x0000000000023b68      0x170 _build/hal.o
+                0x0000000000023b68                init_hal
  .text.sd_ble_gatts_service_add
-                0x0000000000023cc4        0x4 _build/ble_rs.o
+                0x0000000000023cd8        0x4 _build/ble_rs.o
  .text.sd_ble_gatts_characteristic_add
-                0x0000000000023cc8        0x4 _build/ble_rs.o
+                0x0000000000023cdc        0x4 _build/ble_rs.o
  .text.sd_ble_gatts_value_get
-                0x0000000000023ccc        0x4 _build/ble_rs.o
+                0x0000000000023ce0        0x4 _build/ble_rs.o
  .text.sd_ble_gatts_hvx
-                0x0000000000023cd0        0x4 _build/ble_rs.o
+                0x0000000000023ce4        0x4 _build/ble_rs.o
  .text.sd_ble_uuid_vs_add
-                0x0000000000023cd4        0x4 _build/ble_rs.o
+                0x0000000000023ce8        0x4 _build/ble_rs.o
  .text.ble_rs_on_ble_evt
-                0x0000000000023cd8       0x88 _build/ble_rs.o
-                0x0000000000023cd8                ble_rs_on_ble_evt
+                0x0000000000023cec       0x88 _build/ble_rs.o
+                0x0000000000023cec                ble_rs_on_ble_evt
  .text.ble_rs_init
-                0x0000000000023d60      0x3c8 _build/ble_rs.o
-                0x0000000000023d60                ble_rs_init
+                0x0000000000023d74      0x3c8 _build/ble_rs.o
+                0x0000000000023d74                ble_rs_init
  .text.main_rotor_characteristic_update
-                0x0000000000024128       0x4c _build/ble_rs.o
-                0x0000000000024128                main_rotor_characteristic_update
+                0x000000000002413c       0x4c _build/ble_rs.o
+                0x000000000002413c                main_rotor_characteristic_update
  .text.tail_rotor_characteristic_update
-                0x0000000000024174       0x4c _build/ble_rs.o
-                0x0000000000024174                tail_rotor_characteristic_update
+                0x0000000000024188       0x4c _build/ble_rs.o
+                0x0000000000024188                tail_rotor_characteristic_update
  .text.sd_ble_gap_address_get
-                0x00000000000241c0        0x4 _build/ble_advdata.o
+                0x00000000000241d4        0x4 _build/ble_advdata.o
  .text.sd_ble_gap_adv_data_set
-                0x00000000000241c4        0x4 _build/ble_advdata.o
+                0x00000000000241d8        0x4 _build/ble_advdata.o
  .text.sd_ble_gap_appearance_get
-                0x00000000000241c8        0x4 _build/ble_advdata.o
+                0x00000000000241dc        0x4 _build/ble_advdata.o
  .text.sd_ble_gap_device_name_get
-                0x00000000000241cc        0x4 _build/ble_advdata.o
+                0x00000000000241e0        0x4 _build/ble_advdata.o
  .text.sd_ble_uuid_encode
-                0x00000000000241d0        0x4 _build/ble_advdata.o
+                0x00000000000241e4        0x4 _build/ble_advdata.o
  .text.name_encode
-                0x00000000000241d4       0x90 _build/ble_advdata.o
+                0x00000000000241e8       0x90 _build/ble_advdata.o
  .text.uuid_list_sized_encode
-                0x0000000000024264       0xc0 _build/ble_advdata.o
+                0x0000000000024278       0xc0 _build/ble_advdata.o
  .text.adv_data_encode
-                0x0000000000024324      0x554 _build/ble_advdata.o
-                0x0000000000024324                adv_data_encode
+                0x0000000000024338      0x554 _build/ble_advdata.o
+                0x0000000000024338                adv_data_encode
  .text.ble_advdata_set
-                0x0000000000024878      0x5b8 _build/ble_advdata.o
-                0x0000000000024878                ble_advdata_set
+                0x000000000002488c      0x5b8 _build/ble_advdata.o
+                0x000000000002488c                ble_advdata_set
  .text.sd_ble_gap_adv_start
-                0x0000000000024e30        0x4 _build/ble_advertising.o
+                0x0000000000024e44        0x4 _build/ble_advertising.o
  .text.sd_ble_gap_adv_stop
-                0x0000000000024e34        0x4 _build/ble_advertising.o
+                0x0000000000024e48        0x4 _build/ble_advertising.o
  .text.ble_advertising_init
-                0x0000000000024e38      0x188 _build/ble_advertising.o
-                0x0000000000024e38                ble_advertising_init
+                0x0000000000024e4c      0x188 _build/ble_advertising.o
+                0x0000000000024e4c                ble_advertising_init
  .text.ble_advertising_start
-                0x0000000000024fc0      0x2b8 _build/ble_advertising.o
-                0x0000000000024fc0                ble_advertising_start
+                0x0000000000024fd4      0x2b8 _build/ble_advertising.o
+                0x0000000000024fd4                ble_advertising_start
  .text.ble_advertising_on_ble_evt
-                0x0000000000025278       0xb8 _build/ble_advertising.o
-                0x0000000000025278                ble_advertising_on_ble_evt
+                0x000000000002528c       0xb8 _build/ble_advertising.o
+                0x000000000002528c                ble_advertising_on_ble_evt
  .text.ble_advertising_on_sys_evt
-                0x0000000000025330       0x38 _build/ble_advertising.o
-                0x0000000000025330                ble_advertising_on_sys_evt
+                0x0000000000025344       0x38 _build/ble_advertising.o
+                0x0000000000025344                ble_advertising_on_sys_evt
  .text.ble_advertising_restart_without_whitelist
-                0x0000000000025368       0x68 _build/ble_advertising.o
-                0x0000000000025368                ble_advertising_restart_without_whitelist
+                0x000000000002537c       0x68 _build/ble_advertising.o
+                0x000000000002537c                ble_advertising_restart_without_whitelist
  .text.sd_ble_gap_conn_param_update
-                0x00000000000253d0        0x4 _build/ble_conn_params.o
+                0x00000000000253e4        0x4 _build/ble_conn_params.o
  .text.sd_ble_gap_disconnect
-                0x00000000000253d4        0x4 _build/ble_conn_params.o
+                0x00000000000253e8        0x4 _build/ble_conn_params.o
  .text.sd_ble_gap_ppcp_set
-                0x00000000000253d8        0x4 _build/ble_conn_params.o
+                0x00000000000253ec        0x4 _build/ble_conn_params.o
  .text.sd_ble_gap_ppcp_get
-                0x00000000000253dc        0x4 _build/ble_conn_params.o
+                0x00000000000253f0        0x4 _build/ble_conn_params.o
  .text.update_timeout_handler
-                0x00000000000253e0       0x74 _build/ble_conn_params.o
+                0x00000000000253f4       0x74 _build/ble_conn_params.o
  .text.conn_params_negotiation
-                0x0000000000025454       0x94 _build/ble_conn_params.o
+                0x0000000000025468       0x94 _build/ble_conn_params.o
  .text.ble_conn_params_init
-                0x00000000000254e8       0x74 _build/ble_conn_params.o
-                0x00000000000254e8                ble_conn_params_init
+                0x00000000000254fc       0x74 _build/ble_conn_params.o
+                0x00000000000254fc                ble_conn_params_init
  .text.ble_conn_params_on_ble_evt
-                0x000000000002555c       0xb4 _build/ble_conn_params.o
-                0x000000000002555c                ble_conn_params_on_ble_evt
+                0x0000000000025570       0xb4 _build/ble_conn_params.o
+                0x0000000000025570                ble_conn_params_on_ble_evt
  .text.sd_ble_gap_sec_params_reply
-                0x0000000000025610        0x4 _build/device_manager_peripheral.o
- .text.sd_ble_gap_sec_info_reply
-                0x0000000000025614        0x4 _build/device_manager_peripheral.o
- .text.sd_ble_gatts_service_changed
-                0x0000000000025618        0x4 _build/device_manager_peripheral.o
- .text.sd_ble_gatts_sys_attr_set
-                0x000000000002561c        0x4 _build/device_manager_peripheral.o
- .text.sd_ble_gatts_sys_attr_get
-                0x0000000000025620        0x4 _build/device_manager_peripheral.o
- .text.storage_operation_dummy_handler
                 0x0000000000025624        0x4 _build/device_manager_peripheral.o
- .text.no_service_context_store
+ .text.sd_ble_gap_sec_info_reply
                 0x0000000000025628        0x4 _build/device_manager_peripheral.o
- .text.gattc_context_store
+ .text.sd_ble_gatts_service_changed
                 0x000000000002562c        0x4 _build/device_manager_peripheral.o
- .text.no_service_context_load
+ .text.sd_ble_gatts_sys_attr_set
                 0x0000000000025630        0x4 _build/device_manager_peripheral.o
- .text.gattc_context_load
+ .text.sd_ble_gatts_sys_attr_get
                 0x0000000000025634        0x4 _build/device_manager_peripheral.o
- .text.no_service_context_apply
+ .text.storage_operation_dummy_handler
                 0x0000000000025638        0x4 _build/device_manager_peripheral.o
- .text.gattc_context_apply
+ .text.no_service_context_store
                 0x000000000002563c        0x4 _build/device_manager_peripheral.o
+ .text.gattc_context_store
+                0x0000000000025640        0x4 _build/device_manager_peripheral.o
+ .text.no_service_context_load
+                0x0000000000025644        0x4 _build/device_manager_peripheral.o
+ .text.gattc_context_load
+                0x0000000000025648        0x4 _build/device_manager_peripheral.o
+ .text.no_service_context_apply
+                0x000000000002564c        0x4 _build/device_manager_peripheral.o
+ .text.gattc_context_apply
+                0x0000000000025650        0x4 _build/device_manager_peripheral.o
  .text.gatts_context_apply
-                0x0000000000025640       0xe4 _build/device_manager_peripheral.o
+                0x0000000000025654       0xe4 _build/device_manager_peripheral.o
  .text.gatts_context_store
-                0x0000000000025724       0xd8 _build/device_manager_peripheral.o
+                0x0000000000025738       0xd8 _build/device_manager_peripheral.o
  .text.gatts_context_load
-                0x00000000000257fc       0x34 _build/device_manager_peripheral.o
+                0x0000000000025810       0x34 _build/device_manager_peripheral.o
  .text.dm_pstorage_cb_handler
-                0x0000000000025830      0x170 _build/device_manager_peripheral.o
+                0x0000000000025844      0x170 _build/device_manager_peripheral.o
  .text.gattsc_context_load
-                0x00000000000259a0       0x34 _build/device_manager_peripheral.o
+                0x00000000000259b4       0x34 _build/device_manager_peripheral.o
  .text.gattsc_context_apply
-                0x00000000000259d4       0xd0 _build/device_manager_peripheral.o
+                0x00000000000259e8       0xd0 _build/device_manager_peripheral.o
  .text.gattsc_context_store
-                0x0000000000025aa4       0xd8 _build/device_manager_peripheral.o
- .text.dm_init  0x0000000000025b7c      0x148 _build/device_manager_peripheral.o
-                0x0000000000025b7c                dm_init
+                0x0000000000025ab8       0xd8 _build/device_manager_peripheral.o
+ .text.dm_init  0x0000000000025b90      0x148 _build/device_manager_peripheral.o
+                0x0000000000025b90                dm_init
  .text.dm_register
-                0x0000000000025cc4       0x74 _build/device_manager_peripheral.o
-                0x0000000000025cc4                dm_register
+                0x0000000000025cd8       0x74 _build/device_manager_peripheral.o
+                0x0000000000025cd8                dm_register
  .text.bond_data_load
-                0x0000000000025d38       0x4c _build/device_manager_peripheral.o
-                0x0000000000025d38                bond_data_load
+                0x0000000000025d4c       0x4c _build/device_manager_peripheral.o
+                0x0000000000025d4c                bond_data_load
  .text.dm_ble_evt_handler
-                0x0000000000025d84      0x71c _build/device_manager_peripheral.o
-                0x0000000000025d84                dm_ble_evt_handler
+                0x0000000000025d98      0x71c _build/device_manager_peripheral.o
+                0x0000000000025d98                dm_ble_evt_handler
  .text.SystemInit
-                0x00000000000264a0      0x2b0 _build/system_nrf52.o
-                0x00000000000264a0                SystemInit
+                0x00000000000264b4      0x2b0 _build/system_nrf52.o
+                0x00000000000264b4                SystemInit
  .text.sd_evt_get
-                0x0000000000026750        0x4 _build/softdevice_handler.o
+                0x0000000000026764        0x4 _build/softdevice_handler.o
  .text.sd_softdevice_enable
-                0x0000000000026754        0x4 _build/softdevice_handler.o
+                0x0000000000026768        0x4 _build/softdevice_handler.o
  .text.sd_ble_enable
-                0x0000000000026758        0x4 _build/softdevice_handler.o
+                0x000000000002676c        0x4 _build/softdevice_handler.o
  .text.sd_ble_evt_get
-                0x000000000002675c        0x4 _build/softdevice_handler.o
+                0x0000000000026770        0x4 _build/softdevice_handler.o
  .text.softdevice_fault_handler
-                0x0000000000026760        0x8 _build/softdevice_handler.o
-                0x0000000000026760                softdevice_fault_handler
+                0x0000000000026774        0x8 _build/softdevice_handler.o
+                0x0000000000026774                softdevice_fault_handler
  .text.intern_softdevice_events_execute.part.0
-                0x0000000000026768       0xc8 _build/softdevice_handler.o
+                0x000000000002677c       0xc8 _build/softdevice_handler.o
  .text.intern_softdevice_events_execute
-                0x0000000000026830       0x10 _build/softdevice_handler.o
-                0x0000000000026830                intern_softdevice_events_execute
+                0x0000000000026844       0x10 _build/softdevice_handler.o
+                0x0000000000026844                intern_softdevice_events_execute
  .text.softdevice_handler_init
-                0x0000000000026840       0x88 _build/softdevice_handler.o
-                0x0000000000026840                softdevice_handler_init
+                0x0000000000026854       0x88 _build/softdevice_handler.o
+                0x0000000000026854                softdevice_handler_init
  .text.softdevice_ble_evt_handler_set
-                0x00000000000268c8       0x14 _build/softdevice_handler.o
-                0x00000000000268c8                softdevice_ble_evt_handler_set
- .text.softdevice_sys_evt_handler_set
                 0x00000000000268dc       0x14 _build/softdevice_handler.o
-                0x00000000000268dc                softdevice_sys_evt_handler_set
+                0x00000000000268dc                softdevice_ble_evt_handler_set
+ .text.softdevice_sys_evt_handler_set
+                0x00000000000268f0       0x14 _build/softdevice_handler.o
+                0x00000000000268f0                softdevice_sys_evt_handler_set
  .text.SWI2_EGU2_IRQHandler
-                0x00000000000268f0       0x30 _build/softdevice_handler.o
-                0x00000000000268f0                SWI2_EGU2_IRQHandler
+                0x0000000000026904       0x30 _build/softdevice_handler.o
+                0x0000000000026904                SWI2_EGU2_IRQHandler
  .text.softdevice_enable_get_default_config
-                0x0000000000026920       0x30 _build/softdevice_handler.o
-                0x0000000000026920                softdevice_enable_get_default_config
+                0x0000000000026934       0x30 _build/softdevice_handler.o
+                0x0000000000026934                softdevice_enable_get_default_config
  .text.sd_check_ram_start
-                0x0000000000026950       0x48 _build/softdevice_handler.o
-                0x0000000000026950                sd_check_ram_start
+                0x0000000000026964       0x48 _build/softdevice_handler.o
+                0x0000000000026964                sd_check_ram_start
  .text.softdevice_enable
-                0x0000000000026998       0x7c _build/softdevice_handler.o
-                0x0000000000026998                softdevice_enable
- .text          0x0000000000026a14       0x3c _build/gcc_startup_nrf52.o
-                0x0000000000026a14                Reset_Handler
-                0x0000000000026a3c                NMI_Handler
-                0x0000000000026a3e                HardFault_Handler
-                0x0000000000026a40                MemoryManagement_Handler
-                0x0000000000026a42                BusFault_Handler
-                0x0000000000026a44                UsageFault_Handler
-                0x0000000000026a48                DebugMonitor_Handler
-                0x0000000000026a4c                SysTick_Handler
-                0x0000000000026a4e                TIMER3_IRQHandler
-                0x0000000000026a4e                FPU_IRQHandler
-                0x0000000000026a4e                SPIM0_SPIS0_TWIM0_TWIS0_SPI0_TWI0_IRQHandler
-                0x0000000000026a4e                UARTE0_UART0_IRQHandler
-                0x0000000000026a4e                TIMER4_IRQHandler
-                0x0000000000026a4e                I2S_IRQHandler
-                0x0000000000026a4e                SWI4_EGU4_IRQHandler
-                0x0000000000026a4e                PWM2_IRQHandler
-                0x0000000000026a4e                ECB_IRQHandler
-                0x0000000000026a4e                SPIM1_SPIS1_TWIM1_TWIS1_SPI1_TWI1_IRQHandler
-                0x0000000000026a4e                Default_Handler
-                0x0000000000026a4e                CCM_AAR_IRQHandler
-                0x0000000000026a4e                WDT_IRQHandler
-                0x0000000000026a4e                SWI5_EGU5_IRQHandler
-                0x0000000000026a4e                RNG_IRQHandler
-                0x0000000000026a4e                RTC2_IRQHandler
-                0x0000000000026a4e                SWI3_EGU3_IRQHandler
-                0x0000000000026a4e                SWI1_EGU1_IRQHandler
-                0x0000000000026a4e                SPIM2_SPIS2_SPI2_IRQHandler
-                0x0000000000026a4e                NFCT_IRQHandler
-                0x0000000000026a4e                MWU_IRQHandler
-                0x0000000000026a4e                TIMER2_IRQHandler
-                0x0000000000026a4e                COMP_LPCOMP_IRQHandler
-                0x0000000000026a4e                RTC0_IRQHandler
-                0x0000000000026a4e                SWI0_EGU0_IRQHandler
-                0x0000000000026a4e                POWER_CLOCK_IRQHandler
-                0x0000000000026a4e                RADIO_IRQHandler
-                0x0000000000026a4e                PDM_IRQHandler
-                0x0000000000026a4e                TEMP_IRQHandler
-                0x0000000000026a4e                QDEC_IRQHandler
- .text.memcmp   0x0000000000026a50       0x20 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-memcmp.o)
-                0x0000000000026a50                memcmp
- .text.memcpy   0x0000000000026a70       0x16 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-memcpy.o)
-                0x0000000000026a70                memcpy
- .text.strcpy   0x0000000000026a86       0x10 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-strcpy.o)
-                0x0000000000026a86                strcpy
- .text.strlen   0x0000000000026a96       0x10 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-strlen.o)
-                0x0000000000026a96                strlen
+                0x00000000000269ac       0x7c _build/softdevice_handler.o
+                0x00000000000269ac                softdevice_enable
+ .text          0x0000000000026a28       0x3c _build/gcc_startup_nrf52.o
+                0x0000000000026a28                Reset_Handler
+                0x0000000000026a50                NMI_Handler
+                0x0000000000026a52                HardFault_Handler
+                0x0000000000026a54                MemoryManagement_Handler
+                0x0000000000026a56                BusFault_Handler
+                0x0000000000026a58                UsageFault_Handler
+                0x0000000000026a5c                DebugMonitor_Handler
+                0x0000000000026a60                SysTick_Handler
+                0x0000000000026a62                TIMER3_IRQHandler
+                0x0000000000026a62                FPU_IRQHandler
+                0x0000000000026a62                SPIM0_SPIS0_TWIM0_TWIS0_SPI0_TWI0_IRQHandler
+                0x0000000000026a62                UARTE0_UART0_IRQHandler
+                0x0000000000026a62                TIMER4_IRQHandler
+                0x0000000000026a62                I2S_IRQHandler
+                0x0000000000026a62                SWI4_EGU4_IRQHandler
+                0x0000000000026a62                PWM2_IRQHandler
+                0x0000000000026a62                ECB_IRQHandler
+                0x0000000000026a62                SPIM1_SPIS1_TWIM1_TWIS1_SPI1_TWI1_IRQHandler
+                0x0000000000026a62                Default_Handler
+                0x0000000000026a62                CCM_AAR_IRQHandler
+                0x0000000000026a62                WDT_IRQHandler
+                0x0000000000026a62                SWI5_EGU5_IRQHandler
+                0x0000000000026a62                RNG_IRQHandler
+                0x0000000000026a62                RTC2_IRQHandler
+                0x0000000000026a62                SWI3_EGU3_IRQHandler
+                0x0000000000026a62                SWI1_EGU1_IRQHandler
+                0x0000000000026a62                SPIM2_SPIS2_SPI2_IRQHandler
+                0x0000000000026a62                NFCT_IRQHandler
+                0x0000000000026a62                MWU_IRQHandler
+                0x0000000000026a62                TIMER2_IRQHandler
+                0x0000000000026a62                COMP_LPCOMP_IRQHandler
+                0x0000000000026a62                RTC0_IRQHandler
+                0x0000000000026a62                SWI0_EGU0_IRQHandler
+                0x0000000000026a62                POWER_CLOCK_IRQHandler
+                0x0000000000026a62                RADIO_IRQHandler
+                0x0000000000026a62                PDM_IRQHandler
+                0x0000000000026a62                TEMP_IRQHandler
+                0x0000000000026a62                QDEC_IRQHandler
+ .text.memcmp   0x0000000000026a64       0x20 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-memcmp.o)
+                0x0000000000026a64                memcmp
+ .text.memcpy   0x0000000000026a84       0x16 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-memcpy.o)
+                0x0000000000026a84                memcpy
+ .text.strcpy   0x0000000000026a9a       0x10 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-strcpy.o)
+                0x0000000000026a9a                strcpy
+ .text.strlen   0x0000000000026aaa       0x10 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-strlen.o)
+                0x0000000000026aaa                strlen
  *(.init)
- *fill*         0x0000000000026aa6        0x2 
- .init          0x0000000000026aa8        0x4 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
-                0x0000000000026aa8                _init
- .init          0x0000000000026aac        0x8 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
+ *fill*         0x0000000000026aba        0x2 
+ .init          0x0000000000026abc        0x4 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
+                0x0000000000026abc                _init
+ .init          0x0000000000026ac0        0x8 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
  *(.fini)
- .fini          0x0000000000026ab4        0x4 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
-                0x0000000000026ab4                _fini
- .fini          0x0000000000026ab8        0x8 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
+ .fini          0x0000000000026ac8        0x4 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crti.o
+                0x0000000000026ac8                _fini
+ .fini          0x0000000000026acc        0x8 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtn.o
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -6494,115 +6494,115 @@ Linker script and memory map
  *(.dtors)
  *(.rodata*)
  .rodata.str1.1
-                0x0000000000026ac0        0x2 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-impure.o)
- *fill*         0x0000000000026ac2        0x2 
+                0x0000000000026ad4        0x2 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-impure.o)
+ *fill*         0x0000000000026ad6        0x2 
  .rodata._global_impure_ptr
-                0x0000000000026ac4        0x4 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-impure.o)
-                0x0000000000026ac4                _global_impure_ptr
+                0x0000000000026ad8        0x4 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-impure.o)
+                0x0000000000026ad8                _global_impure_ptr
  .rodata.m_detection_delay_timer_id
-                0x0000000000026ac8        0x4 _build/app_button.o
+                0x0000000000026adc        0x4 _build/app_button.o
  .rodata.str1.4
-                0x0000000000026acc        0x2 _build/app_timer_freertos.o
- *fill*         0x0000000000026ace        0x2 
+                0x0000000000026ae0        0x2 _build/app_timer_freertos.o
+ *fill*         0x0000000000026ae2        0x2 
  .rodata.str1.4
-                0x0000000000026ad0        0xe _build/nrf_log.o
- *fill*         0x0000000000026ade        0x2 
+                0x0000000000026ae4        0xe _build/nrf_log.o
+ *fill*         0x0000000000026af2        0x2 
  .rodata.str1.4
-                0x0000000000026ae0       0x17 _build/SEGGER_RTT.o
- *fill*         0x0000000000026af7        0x1 
+                0x0000000000026af4       0x17 _build/SEGGER_RTT.o
+ *fill*         0x0000000000026b0b        0x1 
  .rodata._aV2C.4323
-                0x0000000000026af8       0x10 _build/SEGGER_RTT_printf.o
+                0x0000000000026b0c       0x10 _build/SEGGER_RTT_printf.o
  .rodata.str1.4
-                0x0000000000026b08       0x10 _build/timers.o
+                0x0000000000026b1c       0x10 _build/timers.o
  .rodata.swap_sub_state_sm_lut.7858
-                0x0000000000026b18       0x14 _build/pstorage.o
- .rodata.swap_sub_state_sm_lut.7933
                 0x0000000000026b2c       0x14 _build/pstorage.o
+ .rodata.swap_sub_state_sm_lut.7933
+                0x0000000000026b40       0x14 _build/pstorage.o
  .rodata.m_default_config
-                0x0000000000026b40        0x3 _build/nrf_drv_saadc.o
- *fill*         0x0000000000026b43        0x1 
+                0x0000000000026b54        0x3 _build/nrf_drv_saadc.o
+ *fill*         0x0000000000026b57        0x1 
  .rodata.m_default_config
-                0x0000000000026b44       0x10 _build/nrf_drv_timer.o
+                0x0000000000026b58       0x10 _build/nrf_drv_timer.o
  .rodata.m_button_timer_id
-                0x0000000000026b54        0x4 _build/bsp.o
- .rodata.m_buttons_list
-                0x0000000000026b58       0x10 _build/bsp.o
- .rodata.m_leds_timer_id
                 0x0000000000026b68        0x4 _build/bsp.o
+ .rodata.m_buttons_list
+                0x0000000000026b6c       0x10 _build/bsp.o
+ .rodata.m_leds_timer_id
+                0x0000000000026b7c        0x4 _build/bsp.o
  .rodata.app_buttons
-                0x0000000000026b6c       0x20 _build/bsp.o
+                0x0000000000026b80       0x20 _build/bsp.o
  .rodata.m_alert_timer_id
-                0x0000000000026b8c        0x4 _build/bsp.o
+                0x0000000000026ba0        0x4 _build/bsp.o
  .rodata.str1.4
-                0x0000000000026b90        0x8 _build/main.o
+                0x0000000000026ba4        0x8 _build/main.o
  .rodata.str1.4
-                0x0000000000026b98        0xa _build/adc_sm.o
- *fill*         0x0000000000026ba2        0x2 
- .rodata        0x0000000000026ba4        0x4 _build/ble_main.o
+                0x0000000000026bac        0xa _build/adc_sm.o
+ *fill*         0x0000000000026bb6        0x2 
+ .rodata        0x0000000000026bb8        0x4 _build/ble_main.o
  .rodata.str1.4
-                0x0000000000026ba8        0xb _build/ble_main.o
- *fill*         0x0000000000026bb3        0x1 
- .rodata        0x0000000000026bb4       0x28 _build/hal.o
+                0x0000000000026bbc        0xb _build/ble_main.o
+ *fill*         0x0000000000026bc7        0x1 
+ .rodata        0x0000000000026bc8       0x28 _build/hal.o
  .rodata.m_pwm_PWM1_timer
-                0x0000000000026bdc        0x8 _build/hal.o
-                0x0000000000026bdc                m_pwm_PWM1_timer
+                0x0000000000026bf0        0x8 _build/hal.o
+                0x0000000000026bf0                m_pwm_PWM1_timer
  .rodata.sin_table
-                0x0000000000026be4       0x64 _build/hal.o
-                0x0000000000026be4                sin_table
- .rodata.PWM1   0x0000000000026c48        0x8 _build/hal.o
-                0x0000000000026c48                PWM1
+                0x0000000000026bf8       0x64 _build/hal.o
+                0x0000000000026bf8                sin_table
+ .rodata.PWM1   0x0000000000026c5c        0x8 _build/hal.o
+                0x0000000000026c5c                PWM1
  .rodata.str1.4
-                0x0000000000026c50       0x20 _build/hal.o
- .rodata        0x0000000000026c70       0x10 _build/ble_rs.o
+                0x0000000000026c64       0x20 _build/hal.o
+ .rodata        0x0000000000026c84       0x10 _build/ble_rs.o
  .rodata.m_conn_params_timer_id
-                0x0000000000026c80        0x4 _build/ble_conn_params.o
+                0x0000000000026c94        0x4 _build/ble_conn_params.o
  .rodata.m_service_context_store
-                0x0000000000026c84       0x10 _build/device_manager_peripheral.o
-                0x0000000000026c84                m_service_context_store
+                0x0000000000026c98       0x10 _build/device_manager_peripheral.o
+                0x0000000000026c98                m_service_context_store
  .rodata.m_service_context_load
-                0x0000000000026c94       0x10 _build/device_manager_peripheral.o
-                0x0000000000026c94                m_service_context_load
+                0x0000000000026ca8       0x10 _build/device_manager_peripheral.o
+                0x0000000000026ca8                m_service_context_load
  .rodata.m_service_context_apply
-                0x0000000000026ca4       0x10 _build/device_manager_peripheral.o
-                0x0000000000026ca4                m_service_context_apply
+                0x0000000000026cb8       0x10 _build/device_manager_peripheral.o
+                0x0000000000026cb8                m_service_context_apply
  .rodata.m_context_init_len
-                0x0000000000026cb4        0x4 _build/device_manager_peripheral.o
-                0x0000000000026cb4                m_context_init_len
+                0x0000000000026cc8        0x4 _build/device_manager_peripheral.o
+                0x0000000000026cc8                m_context_init_len
  .rodata.str1.4
-                0x0000000000026cb8      0x100 _build/softdevice_handler.o
+                0x0000000000026ccc      0x100 _build/softdevice_handler.o
  *(.eh_frame*)
- .eh_frame      0x0000000000026db8        0x0 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
- .eh_frame      0x0000000000026db8        0x4 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
+ .eh_frame      0x0000000000026dcc        0x0 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
+ .eh_frame      0x0000000000026dcc        0x4 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtend.o
 
-.glue_7         0x0000000000026dbc        0x0
+.glue_7         0x0000000000026dd0        0x0
  .glue_7        0x0000000000000000        0x0 linker stubs
 
-.glue_7t        0x0000000000026dbc        0x0
+.glue_7t        0x0000000000026dd0        0x0
  .glue_7t       0x0000000000000000        0x0 linker stubs
 
-.vfp11_veneer   0x0000000000026dbc        0x0
+.vfp11_veneer   0x0000000000026dd0        0x0
  .vfp11_veneer  0x0000000000000000        0x0 linker stubs
 
-.v4_bx          0x0000000000026dbc        0x0
+.v4_bx          0x0000000000026dd0        0x0
  .v4_bx         0x0000000000000000        0x0 linker stubs
 
-.iplt           0x0000000000026dbc        0x0
+.iplt           0x0000000000026dd0        0x0
  .iplt          0x0000000000000000        0x0 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0000000000026dbc                __exidx_start = .
+                0x0000000000026dd0                __exidx_start = .
 
-.ARM.exidx      0x0000000000026dbc        0x8
+.ARM.exidx      0x0000000000026dd0        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x0000000000026dbc        0x8 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
-                0x0000000000026dc4                __exidx_end = .
-                0x0000000000026dc4                __etext = .
+ .ARM.exidx     0x0000000000026dd0        0x8 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o
+                0x0000000000026dd8                __exidx_end = .
+                0x0000000000026dd8                __etext = .
 
-.rel.dyn        0x0000000000026dc4        0x0
+.rel.dyn        0x0000000000026dd8        0x0
  .rel.iplt      0x0000000000000000        0x0 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
 
-.data           0x0000000020001fe8       0x78 load address 0x0000000000026dc4
+.data           0x0000000020001fe8       0x78 load address 0x0000000000026dd8
                 0x0000000020001fe8                __data_start__ = .
  *(vtable)
  *(.data*)
@@ -6711,7 +6711,7 @@ LOAD /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.
 LOAD /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libnosys.a
 END GROUP
 
-.igot.plt       0x0000000020002060        0x0 load address 0x0000000000026e3c
+.igot.plt       0x0000000020002060        0x0 load address 0x0000000000026e50
  .igot.plt      0x0000000000000000        0x0 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/armv7e-m/fpu/crtbegin.o
 
 .fs_data        0x0000000020002060        0x0
@@ -6719,7 +6719,7 @@ END GROUP
  *(.fs_data)
                 0x0000000020002060                PROVIDE (__stop_fs_data, .)
 
-.bss            0x0000000020002060     0x2258 load address 0x0000000000026e3c
+.bss            0x0000000020002060     0x2258 load address 0x0000000000026e50
                 0x0000000020002060                . = ALIGN (0x4)
                 0x0000000020002060                __bss_start__ = .
  *(.bss*)
@@ -6904,16 +6904,15 @@ END GROUP
                 0x0000000020003ed8        0x4 _build/hal.o
  .bss.ready_flag
                 0x0000000020003edc        0x1 _build/hal.o
- *fill*         0x0000000020003edd        0x1 
- .bss.tail_rotor_value.11310
-                0x0000000020003ede        0x2 _build/hal.o
+ *fill*         0x0000000020003edd        0x3 
  .bss.debounce_timer
                 0x0000000020003ee0        0x4 _build/hal.o
  .bss.sine_count
                 0x0000000020003ee4        0x4 _build/hal.o
- .bss.main_rotor_value.11309
+ .bss.tail_rotor_value.11316
                 0x0000000020003ee8        0x2 _build/hal.o
- *fill*         0x0000000020003eea        0x2 
+ .bss.main_rotor_value.11315
+                0x0000000020003eea        0x2 _build/hal.o
  .bss.pwm_duty_timer
                 0x0000000020003eec        0x4 _build/hal.o
  .bss.m_advdata
@@ -7200,7 +7199,7 @@ OUTPUT(_build/nrf52832_xxaa_s132.out elf32-littlearm)
  .comment       0x0000000000000000       0x71 _build/system_nrf52.o
  .comment       0x0000000000000000       0x71 _build/softdevice_handler.o
 
-.debug_frame    0x0000000000000000     0x38f8
+.debug_frame    0x0000000000000000     0x38f4
  .debug_frame   0x0000000000000000       0x28 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-exit.o)
  .debug_frame   0x0000000000000028       0x2c /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-init.o)
  .debug_frame   0x0000000000000054       0x20 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-memset.o)
@@ -7237,20 +7236,20 @@ OUTPUT(_build/nrf52832_xxaa_s132.out elf32-littlearm)
  .debug_frame   0x00000000000028a0       0x44 _build/main.o
  .debug_frame   0x00000000000028e4       0x54 _build/adc_sm.o
  .debug_frame   0x0000000000002938      0x228 _build/ble_main.o
- .debug_frame   0x0000000000002b60      0x164 _build/hal.o
- .debug_frame   0x0000000000002cc4      0x118 _build/ble_rs.o
- .debug_frame   0x0000000000002ddc      0x124 _build/ble_advdata.o
- .debug_frame   0x0000000000002f00      0x14c _build/ble_advertising.o
- .debug_frame   0x000000000000304c      0x13c _build/ble_conn_params.o
- .debug_frame   0x0000000000003188      0x4f8 _build/device_manager_peripheral.o
- .debug_frame   0x0000000000003680       0x40 _build/system_nrf52.o
- .debug_frame   0x00000000000036c0      0x1a8 _build/softdevice_handler.o
- .debug_frame   0x0000000000003868       0x28 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-memcmp.o)
- .debug_frame   0x0000000000003890       0x28 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-memcpy.o)
- .debug_frame   0x00000000000038b8       0x20 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-strcpy.o)
- .debug_frame   0x00000000000038d8       0x20 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-strlen.o)
+ .debug_frame   0x0000000000002b60      0x160 _build/hal.o
+ .debug_frame   0x0000000000002cc0      0x118 _build/ble_rs.o
+ .debug_frame   0x0000000000002dd8      0x124 _build/ble_advdata.o
+ .debug_frame   0x0000000000002efc      0x14c _build/ble_advertising.o
+ .debug_frame   0x0000000000003048      0x13c _build/ble_conn_params.o
+ .debug_frame   0x0000000000003184      0x4f8 _build/device_manager_peripheral.o
+ .debug_frame   0x000000000000367c       0x40 _build/system_nrf52.o
+ .debug_frame   0x00000000000036bc      0x1a8 _build/softdevice_handler.o
+ .debug_frame   0x0000000000003864       0x28 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-memcmp.o)
+ .debug_frame   0x000000000000388c       0x28 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-memcpy.o)
+ .debug_frame   0x00000000000038b4       0x20 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-strcpy.o)
+ .debug_frame   0x00000000000038d4       0x20 /usr/local/opt/gcc-arm-none-eabi-4_9-2015q2/bin/../lib/gcc/arm-none-eabi/4.9.3/../../../../arm-none-eabi/lib/armv7e-m/fpu/libc_nano.a(lib_a-strlen.o)
 
-.debug_info     0x0000000000000000    0x35bdb
+.debug_info     0x0000000000000000    0x35c04
  .debug_info    0x0000000000000000      0x6d1 _build/app_button.o
  .debug_info    0x00000000000006d1      0x35b _build/app_error.o
  .debug_info    0x0000000000000a2c      0x315 _build/app_error_weak.o
@@ -7283,14 +7282,14 @@ OUTPUT(_build/nrf52832_xxaa_s132.out elf32-littlearm)
  .debug_info    0x00000000000204af      0x520 _build/main.o
  .debug_info    0x00000000000209cf      0x539 _build/adc_sm.o
  .debug_info    0x0000000000020f08     0x355c _build/ble_main.o
- .debug_info    0x0000000000024464     0x1d9a _build/hal.o
- .debug_info    0x00000000000261fe     0x26d4 _build/ble_rs.o
- .debug_info    0x00000000000288d2     0x1caf _build/ble_advdata.o
- .debug_info    0x000000000002a581     0x219c _build/ble_advertising.o
- .debug_info    0x000000000002c71d     0x1c6b _build/ble_conn_params.o
- .debug_info    0x000000000002e388     0x4382 _build/device_manager_peripheral.o
- .debug_info    0x000000000003270a      0xdc1 _build/system_nrf52.o
- .debug_info    0x00000000000334cb     0x2710 _build/softdevice_handler.o
+ .debug_info    0x0000000000024464     0x1dc3 _build/hal.o
+ .debug_info    0x0000000000026227     0x26d4 _build/ble_rs.o
+ .debug_info    0x00000000000288fb     0x1caf _build/ble_advdata.o
+ .debug_info    0x000000000002a5aa     0x219c _build/ble_advertising.o
+ .debug_info    0x000000000002c746     0x1c6b _build/ble_conn_params.o
+ .debug_info    0x000000000002e3b1     0x4382 _build/device_manager_peripheral.o
+ .debug_info    0x0000000000032733      0xdc1 _build/system_nrf52.o
+ .debug_info    0x00000000000334f4     0x2710 _build/softdevice_handler.o
 
 .debug_abbrev   0x0000000000000000     0x7cc1
  .debug_abbrev  0x0000000000000000      0x21e _build/app_button.o
@@ -7334,7 +7333,7 @@ OUTPUT(_build/nrf52832_xxaa_s132.out elf32-littlearm)
  .debug_abbrev  0x000000000000757d      0x1d3 _build/system_nrf52.o
  .debug_abbrev  0x0000000000007750      0x571 _build/softdevice_handler.o
 
-.debug_loc      0x0000000000000000    0x1db76
+.debug_loc      0x0000000000000000    0x1db1c
  .debug_loc     0x0000000000000000      0x3d7 _build/app_button.o
  .debug_loc     0x00000000000003d7      0x145 _build/app_error.o
  .debug_loc     0x000000000000051c       0x42 _build/app_error_weak.o
@@ -7366,13 +7365,13 @@ OUTPUT(_build/nrf52832_xxaa_s132.out elf32-littlearm)
  .debug_loc     0x00000000000176a3       0x21 _build/main.o
  .debug_loc     0x00000000000176c4       0x60 _build/adc_sm.o
  .debug_loc     0x0000000000017724      0x879 _build/ble_main.o
- .debug_loc     0x0000000000017f9d      0x303 _build/hal.o
- .debug_loc     0x00000000000182a0      0x427 _build/ble_rs.o
- .debug_loc     0x00000000000186c7     0x1d3f _build/ble_advdata.o
- .debug_loc     0x000000000001a406      0x5eb _build/ble_advertising.o
- .debug_loc     0x000000000001a9f1      0x3b8 _build/ble_conn_params.o
- .debug_loc     0x000000000001ada9     0x28ca _build/device_manager_peripheral.o
- .debug_loc     0x000000000001d673      0x503 _build/softdevice_handler.o
+ .debug_loc     0x0000000000017f9d      0x2a9 _build/hal.o
+ .debug_loc     0x0000000000018246      0x427 _build/ble_rs.o
+ .debug_loc     0x000000000001866d     0x1d3f _build/ble_advdata.o
+ .debug_loc     0x000000000001a3ac      0x5eb _build/ble_advertising.o
+ .debug_loc     0x000000000001a997      0x3b8 _build/ble_conn_params.o
+ .debug_loc     0x000000000001ad4f     0x28ca _build/device_manager_peripheral.o
+ .debug_loc     0x000000000001d619      0x503 _build/softdevice_handler.o
 
 .debug_aranges  0x0000000000000000     0x1158
  .debug_aranges
@@ -7675,7 +7674,7 @@ OUTPUT(_build/nrf52832_xxaa_s132.out elf32-littlearm)
  .debug_macro   0x000000000001f06a       0x40 _build/softdevice_handler.o
  .debug_macro   0x000000000001f0aa       0x10 _build/softdevice_handler.o
 
-.debug_line     0x0000000000000000    0x19d81
+.debug_line     0x0000000000000000    0x19d8b
  .debug_line    0x0000000000000000      0x82e _build/app_button.o
  .debug_line    0x000000000000082e      0x545 _build/app_error.o
  .debug_line    0x0000000000000d73      0x50c _build/app_error_weak.o
@@ -7708,14 +7707,14 @@ OUTPUT(_build/nrf52832_xxaa_s132.out elf32-littlearm)
  .debug_line    0x0000000000011c91      0xd03 _build/main.o
  .debug_line    0x0000000000012994      0xcf4 _build/adc_sm.o
  .debug_line    0x0000000000013688      0xf63 _build/ble_main.o
- .debug_line    0x00000000000145eb     0x11e8 _build/hal.o
- .debug_line    0x00000000000157d3      0x868 _build/ble_rs.o
- .debug_line    0x000000000001603b      0xa52 _build/ble_advdata.o
- .debug_line    0x0000000000016a8d      0xa41 _build/ble_advertising.o
- .debug_line    0x00000000000174ce      0x7ed _build/ble_conn_params.o
- .debug_line    0x0000000000017cbb     0x1275 _build/device_manager_peripheral.o
- .debug_line    0x0000000000018f30      0x460 _build/system_nrf52.o
- .debug_line    0x0000000000019390      0x9f1 _build/softdevice_handler.o
+ .debug_line    0x00000000000145eb     0x11f2 _build/hal.o
+ .debug_line    0x00000000000157dd      0x868 _build/ble_rs.o
+ .debug_line    0x0000000000016045      0xa52 _build/ble_advdata.o
+ .debug_line    0x0000000000016a97      0xa41 _build/ble_advertising.o
+ .debug_line    0x00000000000174d8      0x7ed _build/ble_conn_params.o
+ .debug_line    0x0000000000017cc5     0x1275 _build/device_manager_peripheral.o
+ .debug_line    0x0000000000018f3a      0x460 _build/system_nrf52.o
+ .debug_line    0x000000000001939a      0x9f1 _build/softdevice_handler.o
 
 .debug_str      0x0000000000000000    0x93aa8
  .debug_str     0x0000000000000000    0x71d74 _build/app_button.o

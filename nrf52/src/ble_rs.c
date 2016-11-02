@@ -53,7 +53,6 @@ static void on_ble_write(ble_rs_t * p_rs, ble_evt_t * p_ble_evt)
     p_rs->evt_handler(p_rs, &evt);
 }
 
-// ALREADY_DONE_FOR_YOU: Declaration of a function that will take care of some housekeeping of ble connections related to our service and characteristic
 void ble_rs_on_ble_evt(ble_rs_t * p_rs, ble_evt_t * p_ble_evt)
 {
 

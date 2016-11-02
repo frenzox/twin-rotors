@@ -3,8 +3,6 @@
 //  TwinRotors
 //
 //  Created on 9/6/16.
-//  Contributors:
-//      Guilherme Felipe da Silva
 //      André Luiz Luppi
 //      Felipe Hartcopp Betoni
 //
@@ -82,10 +80,10 @@ static void pwm_ready_callback(uint32_t pwm_id)    // PWM callback function
 }
 
 static void pwm_init() {
-    app_pwm_config_t pwm1_cfg = APP_PWM_DEFAULT_CONFIG_1CH(100, PWM0_CONFIG_OUT3_PIN);
+    app_pwm_config_t pwm1_cfg = APP_PWM_DEFAULT_CONFIG_2CH(100, 5, 6); 
     
-    /* Switch the polarity of the second channel. */
     pwm1_cfg.pin_polarity[0] = APP_PWM_POLARITY_ACTIVE_HIGH;
+    pwm1_cfg.pin_polarity[1] = APP_PWM_POLARITY_ACTIVE_HIGH;
     
     /* Initialize and enable PWM. */
     uint32_t err_code = app_pwm_init(&PWM1, &pwm1_cfg, pwm_ready_callback);
@@ -95,14 +93,17 @@ static void pwm_init() {
 
 static void update_duty() {
     sine_count = (sine_count+1) % 100;
-    uint8_t duty = (sin_table[sine_count]*50/255) + 50;
-    app_pwm_channel_duty_set(&PWM1, 0, duty);
+    uint8_t duty = (sin_table[sine_count]*100/255);
+
+    while(app_pwm_channel_duty_set(&PWM1, 0, duty) == NRF_ERROR_BUSY);
+    while(app_pwm_channel_duty_set(&PWM1, 1, duty) == NRF_ERROR_BUSY);
+
 }
 
 
 static void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
 {
-    // Unused but needed for SAADC config
+    // Unused but needed fr SAADC config
     // Called when sampling finishes
 }
 
@@ -209,7 +210,7 @@ void init_hal() {
     sampling = false;
     ready_flag = false;
     debounce_timer = xTimerCreate("DEBOUNCE_TIMER", 300, pdTRUE, NULL, debounce);
-    pwm_duty_timer = xTimerCreate("PWM_TIMER", 30, pdTRUE, NULL, update_duty);
+    pwm_duty_timer = xTimerCreate("PWM_TIMER", 50, pdTRUE, NULL, update_duty);
 
     adc_configure();
     gpiote_init();
