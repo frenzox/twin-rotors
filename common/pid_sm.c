@@ -1,6 +1,6 @@
-#include "adc_sm.h"
+#include "pid_sm.h"
 
-#define ADC_SAMPLING_PERIOD	100
+#define ADC_SAMPLING_PERIOD	1
 
 static TimerHandle_t adc_sampling_timer = NULL;
 
@@ -12,10 +12,10 @@ STATE(IDLE) {
 	}
 
 	if(is_sampling())
-		NEXT_STATE(SAMPLING);
+		NEXT_STATE(CONTROLING);
 }
 
-STATE(SAMPLING) {
+STATE(CONTROLING) {
 	if(FIRST) {
 		 if(!adc_sampling_timer)
 		 	adc_sampling_timer = xTimerCreate(

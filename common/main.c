@@ -9,11 +9,11 @@
 //      Felipe Hartcopp Betoni
 //
 
-#include "adc_sm.h"
+#include "pid_sm.h"
 
 void state_machine_task(void *pParam){
         while(1){
-	        EXEC(sampling_sm);
+	        EXEC(pid_sm);
                 vTaskDelay(20);
 	}
 }
@@ -21,7 +21,7 @@ void state_machine_task(void *pParam){
 int main(void) {
 
 	init_hal();
-	INIT(sampling_sm, IDLE);
+	INIT(pid_sm, IDLE);
 	xTaskCreate(state_machine_task, "SM_TASK", 50, NULL, 1, NULL);
 	vTaskStartScheduler();
 

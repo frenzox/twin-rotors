@@ -30,7 +30,6 @@
 #define BLE_UUID_MAIN_ROTOR_CONTROL_CHARACTERISTC_UUID          0xAAA3
 #define BLE_UUID_TAIL_ROTOR_CONTROL_CHARACTERISTC_UUID          0xAAA4
 
-
 /* @brief Data structure for [Main Rotor] characteristic */
 typedef struct {
     uint16_t value;        // Which GPIO is being controlled, for now, only GPIO0 is valid option

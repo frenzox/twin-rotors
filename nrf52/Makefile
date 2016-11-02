@@ -76,7 +76,7 @@ $(abspath sdk/components/drivers_nrf/hal/nrf_saadc.c) \
 $(abspath sdk/examples/bsp/bsp.c) \
 $(abspath sdk/examplesbsp/bsp_btn_ble.c) \
 $(abspath ../common/main.c) \
-$(abspath ../common/adc_sm.c) \
+$(abspath ../common/pid_sm.c) \
 $(abspath src/ble_main.c) \
 $(abspath src/hal.c) \
 $(abspath src/ble_rs.c) \
@@ -215,7 +215,7 @@ ASMFLAGS += -DNRF52_PAN_62
 ASMFLAGS += -DNRF52_PAN_63
 
 #default target - first one defined
-default: clean nrf52832_xxaa_s132
+default: nrf52832_xxaa_s132
 
 #building all targets
 all: clean

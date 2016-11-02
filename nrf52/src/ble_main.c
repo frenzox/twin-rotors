@@ -10,6 +10,7 @@
 //
 
 #include "ble_main.h"
+#include "hal.h"
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT  1                                          /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
@@ -107,12 +108,13 @@ static void on_ble_data_receive(ble_rs_t* p_rs, ble_rs_evt_t* p_evt)
 {
     switch(p_evt->evt_type) {
         case BLE_RS_EVT_MAIN_ROTOR_CONTROL:
-            nrf_gpio_pin_toggle(18);
             //main_rotor_characteristic_update(p_rs, &p_evt->main_rotor_control.value);
+            m_rotor_ref = p_evt->main_rotor_control.value; 
             break;
         case BLE_RS_EVT_TAIL_ROTOR_CONTROL:
             nrf_gpio_pin_toggle(19);
             //tail_rotor_characteristic_update(p_rs, &p_evt->tail_rotor_control.value);
+            t_rotor_ref = p_evt->tail_rotor_control.value;
         break;
         default:break;
     }

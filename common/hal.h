@@ -14,6 +14,9 @@
 
 #include "ble_main.h"
 
+extern uint8_t m_rotor_ref;
+extern uint8_t t_rotor_ref;
+
 void ble_stack_task(void * vParm);
 void adc_sample();
 void main_rotor_value_update(uint16_t *value);

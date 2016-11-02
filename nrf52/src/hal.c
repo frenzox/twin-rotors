@@ -26,20 +26,25 @@
 #define ADC_BUTTON                          16
 #define ADC_RESULT_IN_MILLI_VOLTS(ADC_VALUE)\
         ((((ADC_VALUE) * ADC_REF_VOLTAGE_IN_MILLIVOLTS) / ADC_RES_10BIT) * ADC_PRE_SCALING_COMPENSATION)
+#define m_kp                                2
+#define m_kd                                m_kp * 0.01
+#define m_ki                                m_kp / 0.02
+
+#define t_kp                                2
+#define t_kd                                t_kp * 0.01
+#define t_ki                                t_kp / 0.02
 
 APP_PWM_INSTANCE(PWM1,1);                   // Create the instance "PWM1" using TIMER1.
 
 static SemaphoreHandle_t              m_ble_event_ready;
 static TaskHandle_t				      m_ble_stack_task;
 static TimerHandle_t                  debounce_timer;
-static TimerHandle_t                  pwm_duty_timer;
 static uint32_t                        sine_count;
 static bool                           sampling;
 static volatile bool                  ready_flag;            // A flag indicating PWM status.
 
-const uint8_t sin_table[] = {0, 0,1,2,4,6,9,12,16,20,24,29,35,40,   46, 53, 59, 66, 74, 81, 88, 96, 104,112,120,128,136,144,152,160,168,175,182,190,197,203,210,216,221,227,
-               232,236,240,244,247,250,252,254,255,255,255,255,255,254,252,250,247,244,240,236,232,227,221,216,210,203,197,190,182,175,168,160,152,144,136,128,120,112,104,
-               96,88,81,74,66,59,   53, 46, 40, 35, 29,24,  20, 16, 12, 9,  6,  4,  2,1,0};            
+uint8_t m_rotor_ref = 0;
+uint8_t t_rotor_ref = 0;
 
 void ble_stack_task(void * vParm)
 {   
@@ -90,16 +95,6 @@ static void pwm_init() {
     APP_ERROR_CHECK(err_code);
     
 }
-
-static void update_duty() {
-    sine_count = (sine_count+1) % 100;
-    uint8_t duty = (sin_table[sine_count]*100/255);
-
-    while(app_pwm_channel_duty_set(&PWM1, 0, duty) == NRF_ERROR_BUSY);
-    while(app_pwm_channel_duty_set(&PWM1, 1, duty) == NRF_ERROR_BUSY);
-
-}
-
 
 static void saadc_callback(nrf_drv_saadc_evt_t const * p_event)
 {
@@ -162,10 +157,8 @@ void adc_button_toggle(){
     if(sampling) {
         sine_count = 0;
         app_pwm_enable(&PWM1);
-        xTimerStart(pwm_duty_timer, 2);
     } else {
         app_pwm_disable(&PWM1);
-        xTimerStop(pwm_duty_timer, 2);
     }
 }
 
@@ -173,6 +166,16 @@ void adc_sample() {
     uint32_t err_code;
     static nrf_saadc_value_t main_rotor_value;
     static nrf_saadc_value_t tail_rotor_value;
+    static double m_previous_error = 0;
+    static double t_previous_error = 0;
+    static double m_previous_integral_action = 0;
+    static double t_previous_integral_action = 0;
+    double m_error;
+    double t_error;
+    double m_integral_action;
+    double t_integral_action;
+    double m_derivative_action;
+    double t_derivative_action;
 
     err_code = nrf_drv_saadc_sample_convert(MAIN_ROTOR_ADC_CHANNEL, &main_rotor_value);
     APP_ERROR_CHECK(err_code);
@@ -180,10 +183,34 @@ void adc_sample() {
     APP_ERROR_CHECK(err_code);
 
     main_rotor_value = ADC_RESULT_IN_MILLI_VOLTS(main_rotor_value);
-    main_rotor_value_update((uint16_t*)&main_rotor_value);
+    //main_rotor_value_update((uint16_t*)&main_rotor_value);
 
     tail_rotor_value = ADC_RESULT_IN_MILLI_VOLTS(tail_rotor_value);
-    tail_rotor_value_update((uint16_t*)&tail_rotor_value);
+    //tail_rotor_value_update((uint16_t*)&tail_rotor_value);
+    
+    //MAIN_ROTOR
+    m_error = m_rotor_ref - ((main_rotor_value * 1.9)/2800) * 100;  
+    m_integral_action = m_previous_integral_action + m_ki * (m_previous_error + m_error)/2;
+    m_derivative_action = m_kd * (m_error - m_previous_error);
+    
+    uint8_t m_u = m_kp * m_error + m_integral_action + m_derivative_action;
+    m_u = m_u > 100 ? 100 : (m_u < 0 ? 0 : m_u);
+
+    m_previous_error = m_error;
+    m_previous_integral_action = m_integral_action;
+
+    //TAIL_ROTOR
+    t_error = t_rotor_ref - ((tail_rotor_value * 1.9)/2800) * 100;  
+    t_integral_action = t_previous_integral_action + t_ki * (t_previous_error + t_error)/2;
+    t_derivative_action = t_kd * (t_error - t_previous_error);
+    
+    uint8_t t_u = t_kp * t_error + t_integral_action + t_derivative_action;
+    t_u = t_u > 100 ? 100 : (t_u < 0 ? 0: t_u);
+
+    t_previous_error = t_error;
+    
+    while(app_pwm_channel_duty_set(&PWM1, 0, m_u) == NRF_ERROR_BUSY);
+    while(app_pwm_channel_duty_set(&PWM1, 1, t_u) == NRF_ERROR_BUSY);
 }
 
 void main_rotor_value_update(uint16_t *value) {
@@ -206,11 +233,10 @@ void set_sampling_indicator(bool on) {
 }
 
 void init_hal() {
-
+    
     sampling = false;
     ready_flag = false;
     debounce_timer = xTimerCreate("DEBOUNCE_TIMER", 300, pdTRUE, NULL, debounce);
-    pwm_duty_timer = xTimerCreate("PWM_TIMER", 50, pdTRUE, NULL, update_duty);
 
     adc_configure();
     gpiote_init();
