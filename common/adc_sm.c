@@ -5,7 +5,7 @@
 static TimerHandle_t adc_sampling_timer = NULL;
 
 STATE(IDLE) {
-	if(FIRST) {
+if(FIRST) {
 		if(adc_sampling_timer)
 			xTimerStop(adc_sampling_timer, 2);
 		set_sampling_indicator(false);
